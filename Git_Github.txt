@@ -1,0 +1,94 @@
+GIT-Version Control System-Hệ thống quản lí các phiên bán, sự thay đổi
+      Source Control Management System
+-> công nghệ/phần mềm/lí thuyết bàn về việc quản lí các sự thay đổi của các tài nguyên của dự án, ví dụ quản lí
+sự thay đổi của code của dự án/nhiều người cùng làm code
+Trước khi có Git, có 1 công nghệ khác gọi là Subversion (centralized system)  
+Git: distributed system
+
+GIT là công nghệ/kĩ thuật-mă nguồn mở, tác giả là Linus Torvalds (Unix)
+
+
+Các cty trên tg lấy công nghệ GIT biến thành product riêng, do đó ta có GitHub, GitLab, BitBucket, ... kho chứa
+code trên mạng
+-Kho này 2 chế độ dùng: free và trả tiền
+- Code để trong các folder-gọi tên là kho code-REPOSITORY-REPO
+- Code đc đẩy lên, lấy về bởi các thành viên dự án
+- Git nó kiểm soát đc sự thay đổi code của từng người, kiểm tra đc conflict, rẽ nhánh thử nghiệm code -> ổn thì
+gộp chung
+
+Để chơi với Git nói chung ta cần:
+- Account (username/email/pass)&URL (định vị trí kho code)
+- Kho chứa code ứng với các dự án khác nhau-REPOSITORY-REPO
+- Tool để đẩy code từ local-máy mình lên remote kho Git trên mạng
+   - IDE có sẵn, hoặc cài plugin
+   - Tool GUI rời, ex: SourceTree, Git Window/Desktop
+   - CMD, gõ lệnh
+                  cmd Windows truyền thống, terminal
+                  nhúng bộ lệnh của bên Linux vào trong Windows (bash shell)
+*Cài tool
+-Tool cmd default, gõ Google git scm download, cài bt
+
+*Các bước chuẩn bị upload code
+1. Tạo kho trên remote server/GitHub/GitLab/BitBucket
+  -kho chứa code mình đặt tên chữ thường, gạch ngang phân cách các từ
+  -chọn kho là public (ai cx thấy, download code của bạn)hoặc private
+   -có option tạo kho: tạo file .gitignore? README. md hay ko?
+  *Tự sinh ra URL để mình share code với người khác, hoặc để biết đường dẫn lấy code về
+  *Gợi ý bộ lệnh để dùng cho lần đầu tiên
+    echo "# math-util-1504" >> README.md
+
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/doit-now/math-util-1504.git
+git push -u origin main
+
+
+2. Thiết lập cầu nối giữa local và remote, chi làm  1 lần duy nhất cho máy này
+  nếu cài lại Windows, hoặc đổi máy thì phải làm lại
+   hoặc bạn đổi username/pass/email của Git mới phải làm lại
+  gõ lệnh trong môi trường Git đã cài trước đó
+    cmd truyền thống của Windows, hoặc bash shell của Linux nhúng trong Windows khi cài Git
+    git config --global user.name <tên-bạn>
+    git config --global user.email <email-bạn>
+
+3. Thiết lập kho code ở local trước, để lát hồi đồng bộ lên server từ xa
+   chỉ làm khi tạo project mới ở local
+    git init
+
+
+4. Đưa code lên lần đầu tiên
+    >>>>> git add hoặc git add.
+    tui mún đưa all lên server ngoại trừ những thằng bị cấm đã liệt kê trong
+    .gitignore
+    >>>>> git commit -m "thông-điệp-ghi-nhận-lại-sự-thay-đổi-của-kho"
+    >>>>> git branch -M main
+
+    >>>>> git remote add origin https://github.com/doit-now/math-util-1504.git
+    >>>>> git push -u origin main
+     sẽ đc yêu cầu xác thực account GitHub, nhập username/pass
+     code đc đẩy lên thành công
+     kiểm tra username/pass, mình mún dùng account khác, pass khác
+     search Windows gõ Credential
+
+TRONG KHO GIT CÓ 1 KĨ THUẬT TRANG TRÍ KHO CHO ĐẸP, DIỄN GIẢI NỘI DUNG KHO CHO NGƯỜI XEM CODE HIỀU CÂU
+CHUYỆN THÔNG QUA TẠO RA1TRANG INDEX.HTML CHO MÔI KHO
+ - CÒN GỌI LÀ TẠO TRANG CHỦ CHO MỖI KHO
+  TRANG CHỦ NÀY ĐC GỌI TÊN LÀ README.md
+                                                        I
+                                          index.jsp index.htm index.html
+                                       md: Markdown, là 1 cú pháp/ngôn ngữ
+                                           đánh dấu (cùng họ ML markup language)
+                                           dùng thẻ đánh dấu nội dung
+          HTML: <h1>tô chữ to, đậm
+          MD:#chữ to, đậm
+          HTML: <h2>to nhỏ hơn h1
+           MD :## h2 nè 
+
+5. Những lần đưa code sau thì sao??? THƯỜNG XUYÊN LÀM TRÒ NÀY
+ 3lệnh huyền thoại làm suốt đời khi sửa code, upload code
+  >>>>> git add *
+  >>>>> git commit -m "thông-điệp-chỉnh-sửa-code'
+ >>>>> git push ko bị hỏi user/pass luôn, nhớ rồi
